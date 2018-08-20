@@ -3,7 +3,7 @@ include "./View/Header.php";
 ?>
 <div class="row">
 
-<form class="form-horizontal" enctype="multipart/form-data">
+<form class="form-horizontal" method = "POST" action ="./SubirArchivo.php" enctype="multipart/form-data">
 <fieldset>
 
 <!-- Form Name -->
@@ -21,7 +21,7 @@ include "./View/Header.php";
 <div class="form-group">
   <label class="col-md-4 control-label" for=""></label>
   <div class="col-md-4">
-    <button id="" name="" class="btn btn-primary">Enviar</button>
+    <button id="" name="btnuploadlibro" class="btn btn-primary" type="submit">Enviar</button>
   </div>
 </div>
 

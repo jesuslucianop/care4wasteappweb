@@ -1,22 +1,19 @@
 <?php
-include_once "Conexion.php";
 
 class SubirArchivo{
     private $db;
     public function __construct()
     {
-        $this->db = new Conexion();
+     
         // $this->nombre = $nombre;
 
     }
 
 
 
-    public function uploadFile($files,$destiny,$titulor,$autor,$cantidadp){
+    public function uploadFile($files,$destiny){
    
-        $titulo = $titulor;// Titulo Del Libro
-        $cantidad_paginas = $cantidadp;
-        $autores = $autor;
+      
         $name = $files['file']['name']; //nombre de la imagen
         $name = str_replace(" ", "_", $name);
         $tmp = $files['file']['tmp_name']; // nombre temporal de la imagen
@@ -26,8 +23,8 @@ class SubirArchivo{
         $url = $destiny."/".$upfile;
        move_uploaded_file($tmp, $destiny . $upfile);
      /*$sql = $this->db->query("Insert into Libros(Titulo,Id_autores, Cant_pag, url) VALUES ('".$titulo."','".$autores."','".$cantidad_paginas."','".$url."') ");*/
-     $sql = "INSERT INTO GBH.libro (Titulo,Id_autores, Cant_pag, url)VALUES('".$titulo."','".$autores."','".$cantidad_paginas."','".$url."') ";
-   $query = $this->db->query($sql);
+    /* $sql = "INSERT INTO GBH.libro (Titulo,Id_autores, Cant_pag, url)VALUES('".$titulo."','".$autores."','".$cantidad_paginas."','".$url."') ";
+   $query = $this->db->query($sql);*/
      print_r($query);
    var_dump($query);
        /* $sql = "INSERT INTO GBH.Libros (Titulo,Id_autores, Cant_pag, url)VALUES('".$titulo."','".$autores."','".$cantidad_paginas."','".$url."') ";
@@ -57,5 +54,5 @@ if(isset($_POST['btnuploadlibro'])){
 $sa = new SubirArchivo();
   
 
-print_r( $sa->uploadFile($_FILES,"./Repositorio/",$_POST['titulo'],$_POST['autores'],$_POST['cantidad']));
+print_r( $sa->uploadFile($_FILES,"./Repositorio/"));
 }
