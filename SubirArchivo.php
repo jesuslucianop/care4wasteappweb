@@ -1,10 +1,10 @@
 <?php
-
+include_once "Conexion.php";
 class SubirArchivo{
     private $db;
     public function __construct()
     {
-     
+        $this->db = new Conexion();
         // $this->nombre = $nombre;
 
     }
@@ -21,12 +21,29 @@ class SubirArchivo{
         $fecha = date("dmY");
         $upfile = $fecha."_".$num."_".$name; //nuevo nombre de la imagen
         $url = $destiny."/".$upfile;
+        $timestamp = date("Y-m-d H:i:s");
+        $h = ("INSERT INTO carewaste.Imagenes_residuos 
+        (
+        Nombre, 
+        Url, 
+        fecha
+        )
+        VALUES
+        (
+        '".$name."', 
+        '".$url."', 
+        '".$timestamp."'
+        );
+    ");
+       $query =  $this->db->query($h);
+print_r($h);
        move_uploaded_file($tmp, $destiny . $upfile);
+       var_dump($query);
      /*$sql = $this->db->query("Insert into Libros(Titulo,Id_autores, Cant_pag, url) VALUES ('".$titulo."','".$autores."','".$cantidad_paginas."','".$url."') ");*/
     /* $sql = "INSERT INTO GBH.libro (Titulo,Id_autores, Cant_pag, url)VALUES('".$titulo."','".$autores."','".$cantidad_paginas."','".$url."') ";
    $query = $this->db->query($sql);*/
-     print_r($query);
-   var_dump($query);
+    // print_r($query);
+   //var_dump($query);
        /* $sql = "INSERT INTO GBH.Libros (Titulo,Id_autores, Cant_pag, url)VALUES('".$titulo."','".$autores."','".$cantidad_paginas."','".$url."') ";
        $row = $this->db->query($sql);
    */
